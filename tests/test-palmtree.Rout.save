@@ -1,0 +1,79 @@
+
+R Under development (unstable) (2018-01-13 r74117) -- "Unsuffered Consequences"
+Copyright (C) 2018 The R Foundation for Statistical Computing
+Platform: i386-w64-mingw32/i386 (32-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library("palmtree")
+Loading required package: partykit
+Loading required package: grid
+Loading required package: libcoin
+Loading required package: mvtnorm
+Loading required package: rpart
+> 
+> ## load data and scale points achieved to [0, 100] percent
+> data("MathExam14W", package = "psychotools")
+> MathExam14W$tests <- 100 * MathExam14W$tests/26
+> MathExam14W$pcorrect <- 100 * MathExam14W$nsolved/13
+> 
+> MathExam <- MathExam14W[,c("pcorrect", "group", "tests", "study",
++                            "attempt", "semester", "gender")]
+> 
+> 
+> ## fit PALM tree to detect potential group effects
+> ## while globally adjusting for math ability prior to the exam
+> tr <- palmtree(pcorrect ~ group | tests | tests + study +
++                  attempt + semester + gender, data = MathExam)
+> 
+> palmmod <- lm(pcorrect ~ 0 + .tree + group:.tree + tests, data = tr$data)
+> 
+> tr
+Partially additive linear model tree
+
+Model formula:
+pcorrect ~ group | tests + study + attempt + semester + gender
+
+Fitted party:
+[1] root
+|   [2] attempt <= 1
+|   |   [3] tests <= 92.30769: n = 352
+|   |       (Intercept)      group2 
+|   |         -7.088499   -2.997321 
+|   |   [4] tests > 92.30769: n = 79
+|   |       (Intercept)      group2 
+|   |          13.98085   -14.49418 
+|   [5] attempt > 1: n = 298
+|       (Intercept)      group2 
+|          2.332298   -1.704129 
+
+Number of inner nodes:    2
+Number of terminal nodes: 3
+Number of parameters per node: 2
+Objective function (residual sum of squares): 253218
+
+Linear fixed effects (from palm model):
+    tests 
+0.7868941 
+> palmmod
+
+Call:
+lm(formula = pcorrect ~ 0 + .tree + group:.tree + tests, data = tr$data)
+
+Coefficients:
+       .tree3         .tree4         .tree5          tests  .tree3:group2  
+      -7.0885        13.9808         2.3323         0.7869        -2.9973  
+.tree4:group2  .tree5:group2  
+     -14.4942        -1.7041  
+
+> 

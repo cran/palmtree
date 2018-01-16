@@ -1,0 +1,26 @@
+bibentry(bibtype = "TechReport",
+  title        = "Generalised Linear Model Trees with Global Additive Effects",
+  author       = c(person(given = "Heidi",
+                          family = "Seibold",
+			  email = "Heidi.Seibold@uzh.ch"),
+                   person(given = "Torsten",
+                          family = "Hothorn",
+                          email = "Torsten.Hothorn@R-project.org"),
+                   person(given = "Achim",
+                          family = "Zeileis",
+                          email = "Achim.Zeileis@R-project.org")),
+  institution  = "arXiv.org E-Print Archive",
+  year         = "2016",
+  type         = "arXiv",
+  number       = "1612.07498",
+  month        = "February",
+  url	       = "http://arxiv.org/abs/1612.07498",
+
+  header       = "To cite palmtree in publications use:",
+  textVersion  =
+  paste("Heidi Seibold, Torsten Hothorn, Achim Zeileis (2016).",
+	"Generalised Linear Model Trees with Global Additive Effects.",
+ 	"arXiv 1612.07498.",
+ 	"arXiv.org E-Print Archive.",
+	"URL http://arxiv.org/abs/1612.07498")
+)

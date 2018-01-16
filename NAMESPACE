@@ -1,0 +1,17 @@
+import("partykit")
+import("stats")
+import("graphics")
+import("grid")
+import("Formula")
+
+export(
+  "palmtree"
+)
+
+## methods for class lmtree
+S3method("coef", "palmtree")
+S3method("logLik", "palmtree")
+S3method("plot", "palmtree")
+S3method("predict", "palmtree")
+S3method("print", "palmtree")
+
