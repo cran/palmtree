@@ -165,7 +165,7 @@ predict.palmtree <- function(object, newdata = NULL, type = "response", ...) {
   } else {
     newdata$.tree <- predict(object$tree, newdata = newdata, type = "node")
     newdata$.tree <- factor(newdata$.tree,
-    			    labels = levels(object$data$.tree))
+    			    levels = levels(object$data$.tree))
     predict(object$palm, newdata = newdata, type = type, ...)
   }
 }

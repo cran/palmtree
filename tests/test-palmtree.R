@@ -18,3 +18,5 @@ palmmod <- lm(pcorrect ~ 0 + .tree + group:.tree + tests, data = tr$data)
 
 tr
 palmmod
+
+predict(tr, newdata = MathExam[1:3,])

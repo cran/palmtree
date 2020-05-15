@@ -1,7 +1,7 @@
 
-R Under development (unstable) (2018-01-13 r74117) -- "Unsuffered Consequences"
-Copyright (C) 2018 The R Foundation for Statistical Computing
-Platform: i386-w64-mingw32/i386 (32-bit)
+R version 3.6.3 (2020-02-29) -- "Holding the Windsock"
+Copyright (C) 2020 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -20,7 +20,6 @@ Loading required package: partykit
 Loading required package: grid
 Loading required package: libcoin
 Loading required package: mvtnorm
-Loading required package: rpart
 > 
 > ## load data and scale points achieved to [0, 100] percent
 > data("MathExam14W", package = "psychotools")
@@ -77,3 +76,10 @@ Coefficients:
      -14.4942        -1.7041  
 
 > 
+> predict(tr, newdata = MathExam[1:3,])
+       1        2        3 
+47.38878 44.70352 53.44181 
+> 
+> proc.time()
+   user  system elapsed 
+  0.913   0.052   0.956 
